@@ -29,6 +29,7 @@ urlpatterns = [
     # Public Content
     path('public/content/', PublicSiteContentView.as_view(), name='public_content'),
     path('cron/expire/', ExpireTransactionsView.as_view(), name='expire_transactions'),
+    path('setup/', ManualSetupView.as_view(), name='manual_setup'),
     path('admin/profile/', AdminProfileView.as_view(), name='admin_profile'),
     path('admin/change-password/', AdminChangePasswordView.as_view(), name='admin_change_password'),
     path('admin/transactions/', AdminTransactionListView.as_view(), name='admin_transactions'),

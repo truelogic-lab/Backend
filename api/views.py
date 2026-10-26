@@ -719,3 +719,16 @@ class ExpireTransactionsView(APIView):
             return Response({"error": "Unauthorized"}, status=403)
         count = expire_pending_transactions()
         return Response({"expired": count})
+
+class ManualSetupView(APIView):
+    permission_classes = ()
+    authentication_classes = []
+
+    def get(self, request):
+        # Only allow once
+        from django.core.management import call_command
+        try:
+            call_command('setup_paywaveke')
+            return Response({"status": "Setup complete"})
+        except Exception as e:
+            return Response({"error": str(e)}, status=500)
